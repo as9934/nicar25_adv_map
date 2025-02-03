@@ -1,15 +1,14 @@
-## Bleeding Out Methodology:
-#### How we calculated stark disparities in trauma care
+## Bleeding Out Methodology: How we calculated stark disparities in trauma care
 
 By <em>Ari Sen & Lauren Caruba</em> 
 
 Tens of thousands of Americans bleed to death every year with injuries they could have survived, researchers say. Traumatic injuries from car crashes, shootings, stabbings, falls and other accidents are the leading killer of children and adults under age 45, and bleeding out is the leading cause of preventable trauma deaths. 
 
-As part of our reporting on these deaths, The Dallas Morning News examined how geographic disparities impacted outcomes. We hypothesized that patients who are farther from Level I or II trauma centers — which are equipped to treat the most critically injured patients — would have a greater chance of dying before reaching a hospital because of longer transport times. 
+As part of our reporting on these deaths, we examined how geographic disparities impacted outcomes. We hypothesized that patients who are farther from Level I or II trauma centers — which are equipped to treat the most critically injured patients — would have a greater chance of dying before reaching a hospital because of longer transport times. 
 
-Our analysis was informed by academic articles that examined preventable trauma deaths and access to trauma care. We tested our theory at the state, county and U.S. census block level, with input from University of Alabama at Birmingham assistant professor and trauma surgeon Dr. Zain Hashmi and his research assistant, medical student Mckinley Williams. We used 2021-22 data from the American Trauma Society, Centers for Disease Control and Prevention and Census Bureau to conduct our analysis. The American Trauma Society, which tracks the location and level of care provided at trauma centers across the country, shared the data with The News under a licensing agreement. 
+Our analysis was informed by academic articles that examined preventable trauma deaths and access to trauma care. We tested our theory at the state, county and U.S. Census Block level, with input from University of Alabama at Birmingham assistant professor and trauma surgeon Dr. Zain Hashmi and his research assistant, medical student Mckinley Williams. We used 2021-22 data from the American Trauma Society, Centers for Disease Control and Prevention and Census Bureau to conduct our analysis. The American Trauma Society, which tracks the location and level of care provided at trauma centers across the country, shared the data under a licensing agreement. 
 
-Data analysis was conducted by News computational journalist Ari Sen. The project was supported by a National Fellowship grant from the University of Southern California’s Center for Health Journalism. 
+Data analysis was conducted by Ari Sen. The project was supported by a National Fellowship grant from the University of Southern California’s Center for Health Journalism. 
 
 The findings echo the work of researchers who have linked rural areas with higher mortality rates for injured patients and underscore the need for improved care for these patients.
 
@@ -28,7 +27,7 @@ We built the map to give readers a clear sense of the geographic disparities in 
 
 To gauge the distance to each trauma center, we converted our geocoded trauma center data into a spatial file. We changed the coordinate reference system (ie. the framework used to locate points on the Earth’s surface) to compute the distance in meters and subsequently transformed it into miles. 
 
-We obtained the shapefiles for every 2022 census block and combined them. We used blocks because they are the smallest unit of measurement the Census Bureau offers that provides the most accurate distance calculation for the map without geocoding every address in the United States. As with the trauma centers, we converted the block file’s coordinate reference system to compute the distance to our trauma centers in miles. We used Geopandas sjoin_nearest function and the centermost point for each block to calculate the approximate distance to the nearest trauma center. 
+We obtained the shapefiles for every 2022 Census Block and combined them. We used Blocks because they are the smallest unit of measurement the Census Bureau offers that provides the most accurate distance calculation for the map without geocoding every address in the United States. As with the trauma centers, we converted the block file’s coordinate reference system to compute the distance to our trauma centers in miles. We used Geopandas sjoin_nearest function and the centermost point for each block to calculate the approximate distance to the nearest trauma center. 
 
 Following a tutorial from Texas Christian University professor Kyle Walker, we used the routingpy library and Mapbox’s API to generate drive times to a hospital, called isochrones. We drew the isochrones in 3-minute increments and removed the next smallest area from the center (as if creating a doughnut), until we reached 30 minutes, to avoid overlapping segments. We chose to stop there because studies have indicated trauma mortality increases every minute, especially around the 30-minute mark. 
 
